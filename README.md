@@ -163,7 +163,6 @@ if __name__ == "__main__":
   - Check for extra spaces or quotes in your `.env` file.
   - Make sure your `.env` file is in the project root and loaded before running the app.
 
----
 
 ## License
 MIT
