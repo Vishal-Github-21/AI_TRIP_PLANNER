@@ -5,32 +5,51 @@ from langchain_google_community import GooglePlacesTool, GooglePlacesAPIWrapper
 
 class GooglePlaceSearchTool:
     def __init__(self, api_key: str):
+        print("[INIT] Initializing GooglePlaceSearchTool with API key.")
         self.places_wrapper = GooglePlacesAPIWrapper(gplaces_api_key=api_key)
         self.places_tool = GooglePlacesTool(api_wrapper=self.places_wrapper)
-    
+        print("[INIT] GooglePlacesTool initialized successfully.")
+
     def google_search_attractions(self, place: str) -> dict:
-        """
-        Searches for attractions in the specified place using GooglePlaces API.
-        """
-        return self.places_tool.run(f"top attractive places in and around {place}")
-    
+        print(f"[SEARCH] Searching attractions in: {place}")
+        try:
+            result = self.places_tool.run(f"top attractive places in and around {place}")
+            print("[RESULT] Attractions search result:", result)
+            return result
+        except Exception as e:
+            print("[ERROR] Attractions search failed:", e)
+            return {}
+
     def google_search_restaurants(self, place: str) -> dict:
-        """
-        Searches for available restaurants in the specified place using GooglePlaces API.
-        """
-        return self.places_tool.run(f"what are the top 10 restaurants and eateries in and around {place}?")
-    
+        print(f"[SEARCH] Searching restaurants in: {place}")
+        try:
+            result = self.places_tool.run(f"what are the top 10 restaurants and eateries in and around {place}?")
+            print("[RESULT] Restaurants search result:", result)
+            return result
+        except Exception as e:
+            print("[ERROR] Restaurant search failed:", e)
+            return {}
+
     def google_search_activity(self, place: str) -> dict:
-        """
-        Searches for popular activities in the specified place using GooglePlaces API.
-        """
-        return self.places_tool.run(f"Activities in and around {place}")
+        print(f"[SEARCH] Searching activities in: {place}")
+        try:
+            result = self.places_tool.run(f"Activities in and around {place}")
+            print("[RESULT] Activities search result:", result)
+            return result
+        except Exception as e:
+            print("[ERROR] Activities search failed:", e)
+            return {}
 
     def google_search_transportation(self, place: str) -> dict:
-        """
-        Searches for available modes of transportation in the specified place using GooglePlaces API.
-        """
-        return self.places_tool.run(f"What are the different modes of transportations available in {place}")
+        print(f"[SEARCH] Searching transportation options in: {place}")
+        try:
+            result = self.places_tool.run(f"What are the different modes of transportations available in {place}")
+            print("[RESULT] Transportation search result:", result)
+            return result
+        except Exception as e:
+            print("[ERROR] Transportation search failed:", e)
+            return {}
+
 
 class TavilyPlaceSearchTool:
     def __init__(self):
